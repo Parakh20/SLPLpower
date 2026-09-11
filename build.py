@@ -1079,9 +1079,12 @@ PAGES['contact.html'] = dict(
         </div>
         <div class="fld"><label for="ms">Scope</label>
           <textarea id="ms" placeholder="Voltage class, location, equipment schedule, target dates…"></textarea></div>
+        <div class="fld hp" aria-hidden="true"><label for="wb">Website</label>
+          <input id="wb" type="text" tabindex="-1" autocomplete="off"></div>
         <button class="btn btn-solid" id="send">Send enquiry
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        <small>Opens in your email client, addressed to info@slplpower.com.</small>
+        <p class="form-status" id="fs" role="status" aria-live="polite"></p>
+        <small>Goes straight to info@slplpower.com. We reply within one working day.</small>
       </div>
     </div>
   </div>

@@ -60,17 +60,47 @@
     cards.forEach(function(c){ c.classList.toggle('hide', f !== 'all' && c.dataset.c !== f); });
   });
 
-  /* enquiry -> mail client — contact page only */
+  /* enquiry -> /api/enquiry, delivered to info@slplpower.com */
   var send = document.getElementById('send');
   if (send) send.addEventListener('click', function(){
     var v = function(id){ return (document.getElementById(id).value || '').trim(); };
-    var body = 'Name: ' + v('nm') + '\nOrganisation: ' + v('org') +
-               '\nEmail: ' + v('em') + '\nPhone: ' + v('ph') +
-               '\nService: ' + document.getElementById('sv').value +
-               '\n\nScope:\n' + v('ms');
-    location.href = 'mailto:info@slplpower.com?subject=' +
-      encodeURIComponent('Enquiry — ' + document.getElementById('sv').value +
-      (v('org') ? ' — ' + v('org') : '')) + '&body=' + encodeURIComponent(body);
+    var status = document.getElementById('fs');
+    var say = function(msg, ok){
+      if (!status) return;
+      status.textContent = msg;
+      status.className = 'form-status' + (ok ? ' ok' : msg ? ' err' : '');
+    };
+
+    if (!v('nm')) { say('Please enter your name.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('em'))) {
+      say('Please enter a valid email address.'); return;
+    }
+    if (v('ms').length < 10) { say('Please describe the scope in a little more detail.'); return; }
+
+    send.disabled = true;
+    say('Sending\u2026');
+
+    fetch('/api/enquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: v('nm'), organisation: v('org'), email: v('em'), phone: v('ph'),
+        service: document.getElementById('sv').value, message: v('ms'),
+        website: v('wb')
+      })
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(d){
+        if (!r.ok) throw new Error(d.error || 'Could not send right now.');
+        return d;
+      });
+    }).then(function(){
+      say('Thank you \u2014 your enquiry is with us. We reply within one working day.', true);
+      ['nm','org','em','ph','ms'].forEach(function(id){ document.getElementById(id).value = ''; });
+    }).catch(function(err){
+      say(err.message + ' You can also email info@slplpower.com directly.');
+    }).then(function(){
+      send.disabled = false;
+    });
   });
 
   /* ── gallery: category filter + lightbox ──────────────────────── */

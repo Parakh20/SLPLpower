@@ -142,7 +142,9 @@ Resend. Nothing depends on the visitor having a mail client.
     api/apply.js     Careers page  -> hr@slplpower.com, CV attached
     api/_lib/mail.js Shared validation, rendering and Resend call
 
-The careers form takes a CV as PDF, DOC or DOCX up to 4 MB. The server
+The careers form takes a CV as PDF, DOC or DOCX up to 3 MB. That ceiling is
+set by Vercel, which refuses request bodies over 4.5 MB; the CV travels as
+base64, which adds a third. The server
 checks the file's leading bytes against its extension, so a renamed file of
 another type is refused.
 

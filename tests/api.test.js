@@ -135,7 +135,7 @@ test('CV over the size limit is refused', () => {
   const big = Buffer.alloc(apply.MAX_CV_BYTES + 1);
   big.write('%PDF');
   const cv = { name: 'cv.pdf', data: big.toString('base64') };
-  assert.match(apply.validateCv(cv).error, /over 4 MB/);
+  assert.match(apply.validateCv(cv).error, /over 3 MB/);
 });
 
 test('DOCX CV is accepted, a data-URL prefix is stripped, the filename is sanitised', () => {

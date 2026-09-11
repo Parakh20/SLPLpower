@@ -62,7 +62,7 @@
 
   /* \u2500\u2500 forms: posted to /api/*, delivered by the server \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
   var EMAIL = /^[^\s@,;<>"]+@[^\s@,;<>"]+\.[^\s@,;<>"]{2,}$/;
-  var MAX_CV = 4 * 1024 * 1024;
+  var MAX_CV = 3 * 1024 * 1024; /* matches api/apply.js: base64 must fit Vercel's 4.5 MB body cap */
   var v = function(id){ var el = document.getElementById(id); return el ? (el.value || '').trim() : ''; };
   function statusLine(id){
     var el = document.getElementById(id);
@@ -136,7 +136,7 @@
       if (!EMAIL.test(v('ap-em'))) { say('Please enter a valid email address.'); return; }
       if (!file) { say('Please attach your CV (PDF or Word).'); return; }
       if (!/\.(pdf|docx?)$/i.test(file.name)) { say('Your CV must be a PDF or Word document.'); return; }
-      if (file.size > MAX_CV) { say('Your CV is over 4 MB. Please send a smaller file.'); return; }
+      if (file.size > MAX_CV) { say('Your CV is over 3 MB. Please send a smaller file.'); return; }
 
       applyBtn.disabled = true;
       say('Sending your application\u2026');

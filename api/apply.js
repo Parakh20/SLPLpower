@@ -31,7 +31,9 @@ const ROLES = [
   GENERAL,
 ];
 
-const MAX_CV_BYTES = 4 * 1024 * 1024;
+// Vercel refuses request bodies over 4.5 MB (FUNCTION_PAYLOAD_TOO_LARGE), and
+// base64 adds a third, so 3 MB is the largest file that reliably fits.
+const MAX_CV_BYTES = 3 * 1024 * 1024;
 const CV_FORMATS = {
   pdf: '25504446', // %PDF
   docx: '504b0304', // zip container
@@ -60,7 +62,7 @@ function validateCv(cv) {
 
   const bytes = Buffer.from(data, 'base64');
   if (bytes.length === 0) return { error: UNREADABLE };
-  if (bytes.length > MAX_CV_BYTES) return { error: 'Your CV is over 4 MB. Please send a smaller file.' };
+  if (bytes.length > MAX_CV_BYTES) return { error: 'Your CV is over 3 MB. Please send a smaller file.' };
   if (bytes.subarray(0, 4).toString('hex') !== CV_FORMATS[ext]) return { error: NOT_A_CV };
   // Every ZIP-based format (xlsx, zip, apk...) shares the DOCX header; only a
   // Word document names a word/ folder inside it.

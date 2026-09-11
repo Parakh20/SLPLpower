@@ -1040,7 +1040,7 @@ PAGES['careers.html'] = dict(
         </div>
         <div class="fld"><label for="ap-cv">CV</label>
           <input id="ap-cv" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-          <span class="hint">PDF or Word, up to 4 MB</span></div>
+          <span class="hint">PDF or Word, up to 3 MB</span></div>
         <div class="fld"><label for="ap-ms">Note <span>(optional)</span></label>
           <textarea id="ap-ms" placeholder="Experience, current location, notice period…"></textarea></div>
         <div class="fld hp" aria-hidden="true"><label for="ap-wb">Website</label>

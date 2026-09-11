@@ -85,26 +85,25 @@ Search the folder for `class="todo"`. Every match is a figure or fact that
 needs confirming, and each renders as a loud amber dashed chip so it can't
 ship unnoticed. Currently:
 
-  - Home / metrics: km of EHV assets under O&M
   - About / timeline: three years (T&C added, ISO certified, first
     international assignment)
-  - About / company facts: ISO certifying body and accreditation
-  - Careers: whether each of the four roles is actually open
   - Contact: registered office address (delete the card if it's the
     same as the corporate office)
+
+The home metrics band shows two figures only (founded, highest class
+commissioned). The km and countries tiles were removed rather than left
+as placeholders.
 
 Delete the `<span class="todo">…</span>` wrapper once the real value is in.
 
 ## Case studies
 
 The `CASES` table in `build.py` holds three studies. Each has a Situation
-(safe to publish, drawn from the company profile) and a "What we did" and
-"Result" that are TODO placeholders.
+(drawn from the company profile), a "What we did", a "Result" and three
+outcome tiles. The last three were supplied by SLPL from the job files.
 
-Those two are blank on purpose. Filling them means stating the actual
-failure mechanism, the actual test scope, the actual availability figure —
-and that has to come from the job file, not from a copywriter. The four
-outcome tiles under each study take the numbers a client could confirm.
+Any change to those figures has to come from the job file, not from a
+copywriter. The outcome tiles take only numbers a client could confirm.
 
 If a study can't be filled with real figures, delete it rather than
 soften it. Two solid studies beat three vague ones.

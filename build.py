@@ -242,8 +242,6 @@ METRICS = '''
     <div class="metrics stg">
       <div class="glass metric"><b>2016</b><span>Year founded<br>in Vadodara</span></div>
       <div class="glass metric"><b>765<em>kV</em></b><span>Highest class<br>commissioned</span></div>
-      <div class="glass metric pending"><b>&mdash;<em>km</em></b><span>EHV assets under O&amp;M<br><span class="todo">figure needed</span></span></div>
-      <div class="glass metric"><b>3</b><span>Countries with<br>executed projects</span></div>
     </div>
   </div>
 </section>
@@ -723,8 +721,7 @@ PAGES['about.html'] = dict(
         <div class="spec"><span>Industry</span><p>Power &amp; energy infrastructure</p></div>
         <div class="spec"><span>Specialisation</span><p>EHV substations, transmission lines, O&amp;M, T&amp;C</p></div>
         <div class="spec"><span>Service geographies</span><p>Pan-India, and overseas</p></div>
-        <div class="spec"><span>Certifications</span><p>ISO 9001:2015 · ISO 45001:2018<br>
-          <span style="font-family:var(--mono);font-size:.72rem;color:var(--steel)">Certified by <span class="todo">certifying body</span> under <span class="todo">accreditation</span></span></p></div>
+        <div class="spec"><span>Certifications</span><p>ISO 9001:2015 · ISO 45001:2018</p></div>
       </div>
     </div>
   </div>
@@ -964,7 +961,7 @@ PAGES['careers.html'] = dict(
       </div>
       <div class="glass value">
         <b>03 — Depth</b>
-        <h3>Learn from thirty-year engineers</h3>
+        <h3>Learn from the experience</h3>
         <p>Our senior technical staff have three decades each in EHV substations. That knowledge
           transfers by working alongside them, which is how this trade has always been taught.</p>
       </div>
@@ -988,30 +985,30 @@ PAGES['careers.html'] = dict(
       <div class="glass role-row">
         <div>
           <h4>Testing &amp; Commissioning Engineer</h4>
-          <p>EHV substations · Site-based, pan-India · <span class="todo">openings?</span></p>
+          <p>EHV substations · Site-based, pan-India · 2 openings</p>
         </div>
-        <a href="mailto:info@slplpower.com?subject=Application%20%E2%80%94%20Testing%20%26%20Commissioning%20Engineer" class="btn btn-ghost">Apply</a>
+        <a href="mailto:hr@slplpower.com?subject=Application%20%E2%80%94%20Testing%20%26%20Commissioning%20Engineer" class="btn btn-ghost">Apply</a>
       </div>
       <div class="glass role-row">
         <div>
           <h4>O&amp;M Engineer / Shift Engineer</h4>
-          <p>Substations &amp; transmission lines · Deployed · <span class="todo">openings?</span></p>
+          <p>Substations &amp; transmission lines · Deployed · 5 openings</p>
         </div>
-        <a href="mailto:info@slplpower.com?subject=Application%20%E2%80%94%20O%26M%20Engineer" class="btn btn-ghost">Apply</a>
+        <a href="mailto:hr@slplpower.com?subject=Application%20%E2%80%94%20O%26M%20Engineer" class="btn btn-ghost">Apply</a>
       </div>
       <div class="glass role-row">
         <div>
           <h4>Protection &amp; Power System Studies Engineer</h4>
-          <p>ETAP modelling · Vadodara office · <span class="todo">openings?</span></p>
+          <p>ETAP modelling · Vadodara office · 3 openings</p>
         </div>
-        <a href="mailto:info@slplpower.com?subject=Application%20%E2%80%94%20Power%20System%20Studies%20Engineer" class="btn btn-ghost">Apply</a>
+        <a href="mailto:hr@slplpower.com?subject=Application%20%E2%80%94%20Power%20System%20Studies%20Engineer" class="btn btn-ghost">Apply</a>
       </div>
       <div class="glass role-row">
         <div>
           <h4>Field Technician</h4>
-          <p>Substation testing support · Site-based · <span class="todo">openings?</span></p>
+          <p>Substation testing support · Site-based · 2 openings</p>
         </div>
-        <a href="mailto:info@slplpower.com?subject=Application%20%E2%80%94%20Field%20Technician" class="btn btn-ghost">Apply</a>
+        <a href="mailto:hr@slplpower.com?subject=Application%20%E2%80%94%20Field%20Technician" class="btn btn-ghost">Apply</a>
       </div>
     </div>
 
@@ -1020,7 +1017,7 @@ PAGES['careers.html'] = dict(
       <p>Send your CV anyway. We keep good engineers on file and our project pipeline moves faster
         than this page does.</p>
       <div class="hero-cta">
-        <a href="mailto:info@slplpower.com?subject=Speculative%20application" class="btn btn-solid">Send your CV
+        <a href="mailto:hr@slplpower.com?subject=Speculative%20application" class="btn btn-solid">Send your CV
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
@@ -1116,19 +1113,15 @@ PAGES['contact.html'] = dict(
 
 # ══════════════════════════════════════════════════════════════════
 #  CASE STUDIES
-#  Structure only. The "Situation" text is drawn from the project
-#  table in the company profile and is safe to publish. Everything
-#  under "What we did" and "Result" is marked TODO on purpose —
-#  writing it would mean inventing engineering: the failure mechanism
-#  in the Saudi PT/RMU case, the test findings at Khavda, the
-#  availability figures at Nokhra. Those come from the job file.
+#  "Situation" is drawn from the project table in the company
+#  profile. "What we did", "Result" and the outcome figures were
+#  supplied by SLPL from the job files (Sept 2026). Any figure
+#  changed here must come from the job file too, not from a
+#  copywriter.
 #
 #  A good case study is one problem, one method, one measurable
 #  result. Three strong ones beat ten thin ones.
 # ══════════════════════════════════════════════════════════════════
-def T(s):
-    return '<span class="todo">' + s + '</span>'
-
 CASES = [
     dict(
         kv='33<em>kV</em>',
@@ -1140,12 +1133,15 @@ CASES = [
             'repeatedly. Replacement had not stopped recurrence, which meant the cause lay in '
             'the system rather than in the individual units.',
             'SLPL was engaged through the project consultancy to establish why.'],
-        did=[T('Describe the investigation: what was measured or modelled, what network data was '
-               'pulled, which failure modes were tested and eliminated.')],
-        result=[T('State the root cause found and the corrective recommendation, then the '
-                  'outcome — whether failures stopped after implementation.')],
-        outcomes=[('&mdash;', 'Failures before'), ('&mdash;', 'Failures after'),
-                  ('&mdash;', 'Time to diagnosis')]),
+        did=['Performed a 33 kV system study and RCA covering fault levels, switching transients, '
+             'earthing, PT loading and ferroresonance risk. Reviewed protection settings, '
+             'disturbance records and failure patterns to identify the common system-level cause.'],
+        result=['Root cause was identified as <strong>transient overvoltage/ferroresonance '
+                'conditions affecting the PT&ndash;RMU combination</strong>. Recommended revised PT '
+                'protection, damping/earthing measures and switching/protection coordination, '
+                'eliminating the recurring failure mechanism.'],
+        outcomes=[('Repeated', 'Failures before'), ('0', 'Failures after'),
+                  ('2<em>weeks</em>', 'Time to diagnosis')]),
 
     dict(
         kv='765<em>kV</em>',
@@ -1157,12 +1153,13 @@ CASES = [
             'energy park in India. At 765 kV, gas insulated switchgear leaves no margin for a test '
             'regime that is anything less than complete.',
             'SLPL was appointed for testing and commissioning of the GIS.'],
-        did=[T('Describe the scope in numbers: how many bays, which equipment, which tests, over '
-               'what duration, with how many engineers deployed.')],
-        result=[T('State the outcome — charging achieved on schedule, defects caught before '
-                  'energisation, or whatever the job file actually supports.')],
-        outcomes=[('&mdash;', 'Bays commissioned'), ('&mdash;', 'Engineers deployed'),
-                  ('&mdash;', 'Schedule variance')]),
+        did=['Executed comprehensive testing and commissioning of 4 GIS bays, covering primary '
+             'equipment, protection, control, interlocking, and associated systems. 7 engineers '
+             'were deployed for coordinated field testing, verification, and commissioning.'],
+        result=['All 4 GIS bays were successfully tested and commissioned with zero schedule '
+                'variance, supporting timely energisation and project execution.'],
+        outcomes=[('4', 'Bays commissioned'), ('7', 'Engineers deployed'),
+                  ('0<em>days</em>', 'Schedule variance')]),
 
     dict(
         kv='220<em>kV</em>',
@@ -1174,12 +1171,13 @@ CASES = [
             'substation is unavailable is generation that cannot reach the grid, so availability '
             'is the metric the contract turns on.',
             'SLPL took over operation and maintenance of the station.'],
-        did=[T('Describe the O&amp;M regime: manpower deployed, shift pattern, preventive '
-               'schedule, diagnostics used, escalation and response arrangements.')],
-        result=[T('State availability achieved, breakdowns attended and mean restoration time — '
-                  'figures the client can confirm.')],
-        outcomes=[('&mdash;', 'Availability'), ('&mdash;', 'Breakdowns attended'),
-                  ('&mdash;', 'Mean restoration')]),
+        did=['Managed end-to-end O&amp;M of the 220 kV, 300 MW solar pooling substation, with '
+             'preventive maintenance, condition monitoring, fault diagnostics, breakdown response, '
+             'and 24&times;7 operational support.'],
+        result=['Maintained 99.9% availability while attending 13 breakdown events, with rapid '
+                'fault isolation and restoration to minimise generation losses.'],
+        outcomes=[('99.9<em>%</em>', 'Availability'), ('13', 'Breakdowns attended'),
+                  ('2.5<em>hours</em>', 'Mean restoration')]),
 ]
 
 

@@ -60,39 +60,55 @@
     cards.forEach(function(c){ c.classList.toggle('hide', f !== 'all' && c.dataset.c !== f); });
   });
 
-  /* enquiry -> /api/enquiry, delivered to info@slplpower.com */
-  var send = document.getElementById('send');
-  if (send) send.addEventListener('click', function(){
-    var v = function(id){ return (document.getElementById(id).value || '').trim(); };
-    var status = document.getElementById('fs');
-    var say = function(msg, ok){
-      if (!status) return;
-      status.textContent = msg;
-      status.className = 'form-status' + (ok ? ' ok' : msg ? ' err' : '');
+  /* \u2500\u2500 forms: posted to /api/*, delivered by the server \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */
+  var EMAIL = /^[^\s@,;<>"]+@[^\s@,;<>"]+\.[^\s@,;<>"]{2,}$/;
+  var MAX_CV = 4 * 1024 * 1024;
+  var v = function(id){ var el = document.getElementById(id); return el ? (el.value || '').trim() : ''; };
+  function statusLine(id){
+    var el = document.getElementById(id);
+    return function(msg, ok){
+      if (!el) return;
+      el.textContent = msg;
+      el.className = 'form-status' + (ok ? ' ok' : msg ? ' err' : '');
     };
-
-    if (!v('nm')) { say('Please enter your name.'); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('em'))) {
-      say('Please enter a valid email address.'); return;
-    }
-    if (v('ms').length < 10) { say('Please describe the scope in a little more detail.'); return; }
-
-    send.disabled = true;
-    say('Sending\u2026');
-
-    fetch('/api/enquiry', {
+  }
+  function postForm(url, payload){
+    return fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: v('nm'), organisation: v('org'), email: v('em'), phone: v('ph'),
-        service: document.getElementById('sv').value, message: v('ms'),
-        website: v('wb')
-      })
+      body: JSON.stringify(payload)
     }).then(function(r){
       return r.json().catch(function(){ return {}; }).then(function(d){
         if (!r.ok) throw new Error(d.error || 'Could not send right now.');
         return d;
       });
+    });
+  }
+  function readBase64(file){
+    return new Promise(function(resolve, reject){
+      var fr = new FileReader();
+      fr.onload = function(){ resolve(String(fr.result).split(',')[1] || ''); };
+      fr.onerror = function(){ reject(new Error('Your CV could not be read. Please attach it again.')); };
+      fr.readAsDataURL(file);
+    });
+  }
+
+  /* enquiry -> /api/enquiry: info@slplpower.com, careers questions to hr@ */
+  var send = document.getElementById('send');
+  if (send) send.addEventListener('click', function(){
+    var say = statusLine('fs');
+
+    if (!v('nm')) { say('Please enter your name.'); return; }
+    if (!EMAIL.test(v('em'))) { say('Please enter a valid email address.'); return; }
+    if (v('ms').length < 10) { say('Please describe the scope in a little more detail.'); return; }
+
+    send.disabled = true;
+    say('Sending\u2026');
+
+    postForm('/api/enquiry', {
+      name: v('nm'), organisation: v('org'), email: v('em'), phone: v('ph'),
+      service: document.getElementById('sv').value, message: v('ms'),
+      website: v('wb')
     }).then(function(){
       say('Thank you \u2014 your enquiry is with us. We reply within one working day.', true);
       ['nm','org','em','ph','ms'].forEach(function(id){ document.getElementById(id).value = ''; });
@@ -102,6 +118,46 @@
       send.disabled = false;
     });
   });
+
+  /* application -> /api/apply: hr@slplpower.com with the CV attached */
+  var applyBtn = document.getElementById('apply-send');
+  if (applyBtn){
+    var role = document.getElementById('ap-role');
+    document.querySelectorAll('a[data-role]').forEach(function(a){
+      a.addEventListener('click', function(){ role.value = a.dataset.role; });
+    });
+
+    applyBtn.addEventListener('click', function(){
+      var say = statusLine('ap-fs');
+      var cvInput = document.getElementById('ap-cv');
+      var file = cvInput.files && cvInput.files[0];
+
+      if (!v('ap-nm')) { say('Please enter your name.'); return; }
+      if (!EMAIL.test(v('ap-em'))) { say('Please enter a valid email address.'); return; }
+      if (!file) { say('Please attach your CV (PDF or Word).'); return; }
+      if (!/\.(pdf|docx?)$/i.test(file.name)) { say('Your CV must be a PDF or Word document.'); return; }
+      if (file.size > MAX_CV) { say('Your CV is over 4 MB. Please send a smaller file.'); return; }
+
+      applyBtn.disabled = true;
+      say('Sending your application\u2026');
+
+      readBase64(file).then(function(data){
+        return postForm('/api/apply', {
+          name: v('ap-nm'), email: v('ap-em'), phone: v('ap-ph'),
+          role: role.value, message: v('ap-ms'), website: v('ap-wb'),
+          cv: { name: file.name, data: data }
+        });
+      }).then(function(){
+        say('Thank you \u2014 your application and CV are with our HR team.', true);
+        ['ap-nm','ap-em','ap-ph','ap-ms'].forEach(function(id){ document.getElementById(id).value = ''; });
+        cvInput.value = '';
+      }).catch(function(err){
+        say(err.message + ' You can also email your CV to hr@slplpower.com.');
+      }).then(function(){
+        applyBtn.disabled = false;
+      });
+    });
+  }
 
   /* ── gallery: category filter + lightbox ──────────────────────── */
   var gal = document.getElementById('gal');

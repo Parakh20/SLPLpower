@@ -98,38 +98,68 @@
           <h4>Testing &amp; Commissioning Engineer</h4>
           <p>EHV substations · Site-based, pan-India · 2 openings</p>
         </div>
-        <a href="mailto:hr@slplpower.com?subject=Application%20%E2%80%94%20Testing%20%26%20Commissioning%20Engineer" class="btn btn-ghost">Apply</a>
+        <a href="#apply" data-role="Testing &amp; Commissioning Engineer" class="btn btn-ghost">Apply</a>
       </div>
       <div class="glass role-row">
         <div>
           <h4>O&amp;M Engineer / Shift Engineer</h4>
           <p>Substations &amp; transmission lines · Deployed · 5 openings</p>
         </div>
-        <a href="mailto:hr@slplpower.com?subject=Application%20%E2%80%94%20O%26M%20Engineer" class="btn btn-ghost">Apply</a>
+        <a href="#apply" data-role="O&amp;M Engineer / Shift Engineer" class="btn btn-ghost">Apply</a>
       </div>
       <div class="glass role-row">
         <div>
           <h4>Protection &amp; Power System Studies Engineer</h4>
           <p>ETAP modelling · Vadodara office · 3 openings</p>
         </div>
-        <a href="mailto:hr@slplpower.com?subject=Application%20%E2%80%94%20Power%20System%20Studies%20Engineer" class="btn btn-ghost">Apply</a>
+        <a href="#apply" data-role="Protection &amp; Power System Studies Engineer" class="btn btn-ghost">Apply</a>
       </div>
       <div class="glass role-row">
         <div>
           <h4>Field Technician</h4>
           <p>Substation testing support · Site-based · 2 openings</p>
         </div>
-        <a href="mailto:hr@slplpower.com?subject=Application%20%E2%80%94%20Field%20Technician" class="btn btn-ghost">Apply</a>
+        <a href="#apply" data-role="Field Technician" class="btn btn-ghost">Apply</a>
       </div>
     </div>
 
-    <div class="glass cta-band rv" style="margin-top:40px">
-      <h2>Nothing listed that fits?</h2>
-      <p>Send your CV anyway. We keep good engineers on file and our project pipeline moves faster
-        than this page does.</p>
-      <div class="hero-cta">
-        <a href="mailto:hr@slplpower.com?subject=Speculative%20application" class="btn btn-solid">Send your CV
-          <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="contact-grid stg" id="apply">
+      <div class="glass info apply-intro">
+        <p class="eyebrow">Apply</p>
+        <h2>Send us your CV.</h2>
+        <p>Pick the role, attach your CV, and it goes straight to our HR team at
+          <a href="mailto:hr@slplpower.com">hr@slplpower.com</a>.</p>
+        <p><b>Nothing listed that fits?</b> Choose &ldquo;General application&rdquo; and send your CV
+          anyway. We keep good engineers on file and our project pipeline moves faster than this
+          page does.</p>
+      </div>
+
+      <div class="glass form">
+        <div class="f-row">
+          <div class="fld"><label for="ap-nm">Name</label><input id="ap-nm" type="text" autocomplete="name" placeholder="Your name"></div>
+          <div class="fld"><label for="ap-ph">Phone</label><input id="ap-ph" type="tel" autocomplete="tel" placeholder="+91"></div>
+        </div>
+        <div class="fld"><label for="ap-em">Email</label><input id="ap-em" type="email" autocomplete="email" placeholder="you@example.com"></div>
+        <div class="fld"><label for="ap-role">Role</label>
+          <select id="ap-role">
+            <option>Testing &amp; Commissioning Engineer</option>
+            <option>O&amp;M Engineer / Shift Engineer</option>
+            <option>Protection &amp; Power System Studies Engineer</option>
+            <option>Field Technician</option>
+            <option>General application</option>
+          </select>
+        </div>
+        <div class="fld"><label for="ap-cv">CV</label>
+          <input id="ap-cv" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+          <span class="hint">PDF or Word, up to 4 MB</span></div>
+        <div class="fld"><label for="ap-ms">Note <span>(optional)</span></label>
+          <textarea id="ap-ms" placeholder="Experience, current location, notice period…"></textarea></div>
+        <div class="fld hp" aria-hidden="true"><label for="ap-wb">Website</label>
+          <input id="ap-wb" type="text" tabindex="-1" autocomplete="off"></div>
+        <button class="btn btn-solid" id="apply-send">Send application
+          <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <p class="form-status" id="ap-fs" role="status" aria-live="polite"></p>
+        <small>Goes straight to hr@slplpower.com with your CV attached.</small>
       </div>
     </div>
   </div>

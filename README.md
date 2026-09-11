@@ -132,8 +132,27 @@ Built and working, but disabled. Set `GALLERY_ENABLED = True` in
 `assets/img/gallery/`; read the README.txt there first — it covers PPE,
 client-confidential detail and consent.
 
-## Contact form
+## Forms
 
-The enquiry form opens the visitor's own mail client via `mailto:`. It does
-not send mail from the server. To capture submissions properly you'd need a
-form service or a small backend endpoint.
+Both forms post JSON to a Vercel function, which sends the mail through
+Resend. Nothing depends on the visitor having a mail client.
+
+    api/enquiry.js   Contact page  -> info@slplpower.com
+                     ("Careers" chosen as the service -> hr@slplpower.com)
+    api/apply.js     Careers page  -> hr@slplpower.com, CV attached
+    api/_lib/mail.js Shared validation, rendering and Resend call
+
+The careers form takes a CV as PDF, DOC or DOCX up to 4 MB. The server
+checks the file's leading bytes against its extension, so a renamed file of
+another type is refused.
+
+Environment variables (Vercel project settings):
+
+    RESEND_API_KEY   required
+    ENQUIRY_TO       optional, default info@slplpower.com
+    CAREERS_TO       optional, default hr@slplpower.com
+    MAIL_FROM        optional, default "SLPL Website <website@send.slplpower.com>"
+
+Tests for both handlers, no dependencies:
+
+    node --test 'tests/*.test.js'

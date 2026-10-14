@@ -1,6 +1,56 @@
-# slplpower.com — static site
+# SLPL Power — company website
 
-Eight pages, shared stylesheet, no build step required to deploy.
+[![Checks](https://github.com/Parakh20/SLPLpower/actions/workflows/checks.yml/badge.svg)](https://github.com/Parakh20/SLPLpower/actions/workflows/checks.yml)
+
+**Client project.** Built for SLPL Power, live at https://www.slplpower.com.
+
+Marketing site for SLPL (Storeleaf Private Limited, Vadodara), covering its
+testing & commissioning, O&M and power system studies work for EHV
+substations and transmission lines. Eight content pages plus a 404 page,
+hand-written HTML/CSS/JS generated from a single Python script, with two
+small Vercel serverless functions behind the contact and careers forms.
+
+> Site content and branding belong to SLPL Power. Code shown with permission as portfolio work.
+
+## At a glance
+
+- **Front end:** static HTML, two shared stylesheets (`assets/css/`), one
+  vanilla JS file (`assets/js/base.js`). No framework, no bundler.
+- **Templating:** `build.py` (Python 3, standard library only) holds the nav,
+  footer, case studies and evidence tables, and writes every page plus
+  `sitemap.xml`, `robots.txt` and `404.html`, so pages can't drift apart.
+- **Forms:** `api/enquiry.js` and `api/apply.js` are Vercel functions that
+  validate input and send mail through Resend's REST API (no npm
+  dependencies). The careers form accepts a CV attachment.
+- **Tests:** `tests/api.test.js`, Node's built-in test runner, with `fetch`
+  stubbed so Resend is never called.
+- **CI:** GitHub Actions runs an offline link check over every page
+  (lychee: relative links, assets and `#fragments`) and the form handler tests.
+- **Hosting:** Vercel (static files served from the repo root, `/api/*` as
+  functions). The `RESEND_API_KEY` lives in Vercel project settings, never
+  in this repo.
+
+## Preview locally
+
+Pages and assets only (the forms need the Vercel runtime and a Resend key):
+
+    python3 -m http.server 8000
+    # open http://localhost:8000
+
+Run the form handler tests (Node 18+):
+
+    node --test 'tests/*.test.js'
+
+Regenerate pages after editing `build.py`:
+
+    python3 build.py
+
+---
+
+# Maintainer notes
+
+The rest of this file is the hand-off documentation for whoever edits the
+site. Eight pages, shared stylesheet, no build step required to deploy.
 
 ## Favicons
 

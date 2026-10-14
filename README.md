@@ -37,7 +37,7 @@ Pages and assets only (the forms need the Vercel runtime and a Resend key):
     python3 -m http.server 8000
     # open http://localhost:8000
 
-Run the form handler tests (Node 18+):
+Run the form handler tests (Node 22+; the quoted glob needs it):
 
     node --test 'tests/*.test.js'
 

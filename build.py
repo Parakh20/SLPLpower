@@ -1121,19 +1121,13 @@ PAGES['contact.html'] = dict(
   <div class="wrap">
     <div class="rv">
       <p class="eyebrow">Where to find us</p>
-      <h2>Our offices.</h2>
+      <h2>Our office.</h2>
     </div>
     <div class="offices stg">
       <div class="glass office">
         <b>Corporate office</b>
         <p>303, Imperial Heights<br>Near Akshar Chowk, Sun Pharma Road<br>Vadodara, Gujarat 390020<br>India</p>
         <a href="https://maps.app.goo.gl/FSakBF4zrxXLy9jH6" target="_blank" rel="noopener" class="btn btn-ghost" style="margin-top:20px">Open in Maps</a>
-      </div>
-      <div class="glass office">
-        <b>Registered office</b>
-        <p><span class="todo">Confirm registered office address</span><br>
-          <span style="font-size:.88rem;color:var(--muted)">If this is the same as the corporate
-          office above, this card should be deleted rather than duplicated.</span></p>
       </div>
     </div>
   </div>
